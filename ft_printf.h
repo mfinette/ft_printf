@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 11:14:33 by mfinette          #+#    #+#             */
-/*   Updated: 2022/11/12 19:25:35 by mfinette         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:48:43 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdarg.h>
-# include <stdio.h>
 
 size_t	ft_strlen(const char *str);
 void	ft_bzero(void *str, size_t n);

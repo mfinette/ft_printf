@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 10:14:54 by mfinette          #+#    #+#             */
-/*   Updated: 2022/11/14 17:30:59 by mfinette         ###   ########.fr       */
+/*   Updated: 2022/11/16 15:48:36 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,4 @@ int	ft_printf(const char *str, ...)
 		i++;
 	}
 	return (len);
-}
-
-int main(void)
-{
-	int	toto;
-
-	toto = 4;
-	ft_printf("addresse = %p", &toto);
 }

@@ -6,7 +6,7 @@
 #    By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/10 08:52:38 by mfinette          #+#    #+#              #
-#    Updated: 2022/11/13 16:46:22 by mfinette         ###   ########.fr        #
+#    Updated: 2022/11/16 15:49:01 by mfinette         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,9 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 LIBFT	= libft
 AR		= ar rcs
-RM		= @rm -f
+RM		= rm -f
 NORM	= norminette -R CheckDefine
 HEADER	= ft_printf.h
-DEF_COLOR = \033[0;39m
-YELLOW = \033[0;93m
-GREEN = \033[0;92m
-BLUE = \033[0;94m
-CYAN = \033[0;96m
 
 FILES = formats/ft_format_c 		\
 		formats/ft_format_d 		\
@@ -48,30 +43,19 @@ OBJS_DIR = ./
 OBJS = $(addprefix $(OBJS_DIR), $(addsuffix .o, $(FILES)))
 
 %.o:%.c $(HEADER) Makefile
-	@echo "$(YELLOW)Compiling: $< $(DEF_COLOR)"
-	@$(CC) $(CFLAGS) -c -o $@ $<
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME): $(OBJS)
-	@$(AR) $@ $^	
-	@echo "$(GREEN)😳😎ft_printf compiled!😎😳$(DEF_COLOR)"
+	$(AR) $@ $^	
 	
 all: $(NAME)
 		
 
 clean:
-	@$(RM) $(OBJS)
-	@echo "$(CYAN)ft_printf object files cleaned!$(DEF_COLOR)"
+	$(RM) $(OBJS)
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo "$(CYAN)3$(DEF_COLOR)"
-	@sleep 0.2
-	@echo "$(CYAN)2$(DEF_COLOR)"
-	@sleep 0.2
-	@echo "$(CYAN)1$(DEF_COLOR)"
-	@sleep 0.2
-	@echo "$(GREEN)ft_printf executable files cleaned!$(DEF_COLOR)"
-
+	$(RM) $(NAME)
 
 re: clean all
 
