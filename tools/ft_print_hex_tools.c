@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 18:05:08 by mfinette          #+#    #+#             */
-/*   Updated: 2022/11/12 19:14:16 by mfinette         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:22:50 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,12 @@ int	ft_hex_len(unsigned	int num)
 	return (len);
 }
 
-void	ft_put_hex(unsigned int num, const char letter)
+int	ft_put_hex(unsigned int num, const char letter)
 {
+	int	x;
+
+	if (write(1, 0, 0) != 0)
+		return (-1);
 	if (num >= 16)
 	{
 		ft_put_hex(num / 16, letter);
@@ -35,13 +39,16 @@ void	ft_put_hex(unsigned int num, const char letter)
 	else
 	{
 		if (num <= 9)
-			ft_putchar((num + '0'));
+		{
+			x = ft_putchar(num + '0');
+			if (x < 0)
+				return (-1000);
+		}
 		else
 		{
-			if (letter == 'x')
-				ft_putchar((num - 10 + 'a'));
-			if (letter == 'X')
-				ft_putchar((num - 10 + 'A'));
+			if (ft_putchar(num - 10 + letter) < 0)
+				return (-1000);
 		}
 	}
+	return (0);
 }

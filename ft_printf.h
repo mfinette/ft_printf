@@ -6,7 +6,7 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 11:14:33 by mfinette          #+#    #+#             */
-/*   Updated: 2022/11/16 15:48:43 by mfinette         ###   ########.fr       */
+/*   Updated: 2022/11/18 11:24:50 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ int		ft_putstr(char *str);
 int		ft_putnbr(int n);
 int		ft_u_putnbr(unsigned int n);
 int		ft_hex_len(unsigned	int num);
-void	ft_put_hex(unsigned int num, const char letter);
-void	ft_put_ptr(unsigned long long int num);
+int		ft_put_hex(unsigned int num, const char letter);
+int		ft_put_ptr(unsigned long long int num, const char letter);
 int		ft_format_s(char *str);
 int		ft_format_c(char c);
 int		ft_format_d(int n);
 int		ft_format_p(unsigned long long ptr);
 int		ft_format_u(unsigned int n);
 int		ft_format_x_min(int n);
-int		ft_format_x_maj(int n);
+int		ft_format_x_maj(long int n);
 int		ft_printf(const char *str, ...);
 
 #endif

@@ -6,56 +6,73 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 10:14:54 by mfinette          #+#    #+#             */
-/*   Updated: 2022/11/16 15:48:36 by mfinette         ###   ########.fr       */
+/*   Updated: 2022/11/18 16:23:37 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_case(va_list valist, char c)
 {
+	int	x;
+
+	x = 0;
 	if (c == 'c')
-		return (ft_format_c(va_arg(valist, int)));
+		x = ft_format_c(va_arg(valist, int));
 	else if (c == 'd' || c == 'i')
-		return (ft_format_d(va_arg(valist, int)));
+		x = ft_format_d(va_arg(valist, int));
 	else if (c == 's')
-		return (ft_format_s(va_arg(valist, char *)));
+		x = ft_format_s(va_arg(valist, char *));
 	else if (c == 'p')
-		return (ft_format_p(va_arg(valist, unsigned long long)));
+		x = ft_format_p(va_arg(valist, unsigned long long));
 	else if (c == 'u')
-		return (ft_format_u(va_arg(valist, unsigned int)));
+		x = ft_format_u(va_arg(valist, unsigned int));
 	else if (c == 'x')
-		return (ft_format_x_min(va_arg(valist, int)));
+		x = ft_format_x_min(va_arg(valist, int));
 	else if (c == 'X')
-		return (ft_format_x_maj(va_arg(valist, int)));
+		x = ft_format_x_maj(va_arg(valist, int));
 	else if (c == '%')
-		return (ft_putchar('%'));
-	else
-		return (0);
+		x = ft_putchar('%');
+	return (x);
+}
+
+int	ft_print_get_len(va_list valist, const char *str, int len)
+{
+	int	i;
+	int	x;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '%')
+		{
+			x = len + ft_putchar(str[i]);
+			if (x < len)
+				return (-1);
+			len = x;
+		}
+		if (str[i] == '%' && str[i + 1])
+		{
+			x = ft_case(valist, str[i + 1]);
+			if (x < 0)
+				return (-1);
+			len = len + x;
+			i++;
+		}
+		i++;
+	}	
+	return (len);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	valist;
-	int		i;
 	int		len;
 
-	i = 0;
 	len = 0;
 	va_start(valist, str);
-	while (str[i])
-	{
-		if (str[i] != '%')
-		{
-			ft_putchar(str[i]);
-			len++;
-		}
-		if (str[i] == '%')
-		{
-			len = len + ft_case(valist, str[i + 1]);
-			i++;
-		}
-		i++;
-	}
+	len = ft_print_get_len(valist, str, len);
+	va_end(valist);
 	return (len);
 }
