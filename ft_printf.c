@@ -6,14 +6,13 @@
 /*   By: mfinette <mfinette@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 10:14:54 by mfinette          #+#    #+#             */
-/*   Updated: 2022/11/18 16:23:37 by mfinette         ###   ########.fr       */
+/*   Updated: 2022/11/18 19:17:58 by mfinette         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
-int	ft_case(va_list valist, char c)
+static	int	ft_case(va_list valist, char c)
 {
 	int	x;
 
@@ -37,7 +36,7 @@ int	ft_case(va_list valist, char c)
 	return (x);
 }
 
-int	ft_print_get_len(va_list valist, const char *str, int len)
+static	int	ft_print_get_len(va_list valist, const char *str, int len)
 {
 	int	i;
 	int	x;
